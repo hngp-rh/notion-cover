@@ -1,0 +1,23 @@
+body {
+  width: 1500px;
+  height: 600px;
+  background-color:black;
+}
+
+.dynamic-bg-text {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.dynamic-bg {
+  background-color: rgba(0, 0, 0, 1); /* Transparent black */
+  position: relative; /* Needed for absolute positioning of text */
+  width: 1500px;
+  height: 600px;
+}
+
