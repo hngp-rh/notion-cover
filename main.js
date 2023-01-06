@@ -1,31 +1,39 @@
-const data = [
-  {
-    url: 'https://download.unsplash.com/photo-1430916273432-273c2db881a0',
-    text: 'Image 1'
-  },
-  {
-    url: 'https://download.unsplash.com/photo-1428278953961-a8bc45e05f72',
-    text: 'Image 2'
-  },
-  {
-    url: 'https://images.unsplash.com/photo-1518731429075-f91c8025641e',
-    text: 'Image 3'
-  },
-  // Add more objects here
+const imageURLs = [
+  'https://download.unsplash.com/photo-1430916273432-273c2db881a0',
+ 'https://images.unsplash.com/photo-1518731429075-f91c8025641e',
+  'https://images.unsplash.com/photo-1544026230-488aeae72c0d',
+];
+
+const textList = [
+  'Text 1',
+  'Text 2',
+  'Text 3',
+  'Text 4',
+  'Text 5',
 ];
 
 
-const pictureElement = document.getElementById('picture');
-const textElement = document.getElementById('text');
+let currentImageIndex = 0;
 
-function updatePicture() {
-  const randomIndex = Math.floor(Math.random() * data.length);
-  const { url, text } = data[randomIndex];
-  pictureElement.style.backgroundImage = `url(${url})`;
+function updateBodyBg() {
+  // Update the background image
+  const bgElement = document.querySelector('.dynamic-bg');
+  bgElement.style.backgroundImage = `url('${imageURLs[currentImageIndex]}')`;
+
+   // Pick a random text string from the textList array
+  const textIndex = Math.floor(Math.random() * textList.length);
+  const text = textList[textIndex];
+  
+  // Update the text on top of the picture
+  const textElement = document.querySelector('.dynamic-bg-text');
   textElement.textContent = text;
+
+  // Increment the current image index, or reset it to 0 if we've reached the end of the array
+  currentImageIndex = (currentImageIndex + 1) % imageURLs.length;
 }
 
-updatePicture();
+// Call the updateBodyBg() function every 5 seconds
+setInterval(updateBodyBg, 5000);
 
-setInterval(updatePicture, 5000);
-
+// Call the function once to set the initial background and text
+updateBodyBg();
